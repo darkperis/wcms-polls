@@ -19,6 +19,18 @@ php artisan migrate
 ___
 
 
+## Use:
+
+Manage polls via wcms-polls dashboard
+
+and view in blades
+
+```php
+{{ PollWriter::draw(Darkpony\WCMSPolls\Poll::find([POLL_ID])) }}
+```
 
 
-## Warning - This is an private use package. Do not use outside Darkpony Digital.
+
+## Warning - This is a private use package.
+
+## Warning - Do not use outside Darkpony Digital.
