@@ -3,7 +3,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-arrow-right"></span> {{ $question }}
+                {{ $question }}
             </h3>
         </div>
     </div>
@@ -21,7 +21,7 @@
             @endforeach
         </ul>
     </div>
-    <div class="panel-footer">
+    <div class="panel-footer mt-4">
         <input type="submit" class="ctab mt-2" value="Ψηφίστε" />
     </div>
 </form>

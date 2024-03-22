@@ -82,7 +82,7 @@ Polls- Creation
                     </button>
                 </div>
                 <div class="d-flex py-2">
-                    <input @keyup.enter="addNewOption" v-model="newOption" class="form-control col-lg-6 mr-4" type="text" placeholder="Luka Modric" aria-label="Full name">
+                    <input @keyup.enter="addNewOption" v-model="newOption" class="form-control col-lg-6 mr-4" type="text" placeholder="Jasper" aria-label="Full name">
                     <button @click.prevent="addNewOption" class="btn btn-sm btn-primary" type="button">
                         Add
                     </button>
@@ -117,6 +117,26 @@ Polls- Creation
                     </label>
                 </div>
             </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="px-3 mb-6">
+                    <label class="custom-label flex">
+                        <div class="flex justify-center items-center mr-2">
+                            <input id="canVoterSeeResult" type="checkbox" class="form-check-input">
+                        </div>
+                        <span class="select-none">Voter can see the result</span>
+                    </label>
+                </div>
+            </div>
+
+            {{-- <div class="px-3 mb-2">
+                                            <label class="custom-label flex">
+                                                <div class="flex justify-center items-center mr-2">
+                                                    <input id="canVoterSeeResult" type="checkbox" class="form-check-input" {{ $poll->showResultsEnabled() ? 'checked' : ''  }} >
+                                                </div>
+                                                <span class="select-none">Voter can see the result</span>
+                                            </label>
+                                        </div> --}}
 
             <div class="flex items-center justify-between mt-4">
                 <button @click.prevent="save" class="btn btn-primary" type="button">
@@ -166,7 +186,7 @@ Polls- Creation
                     newOption: '',
                     question: '',
                     options: [
-                        { value: '', placeholder: 'Chat GPT'},
+                        { value: '', placeholder: 'ChatGPT'},
                         { value: '', placeholder: 'Gemini'},
                     ],
                    error_message: '',
@@ -222,7 +242,8 @@ Polls- Creation
                        question: this.question,
                        options: this.filledOptions,
                        starts_at: document.getElementById('starts_at').value,
-                       canVisitorsVote: document.getElementById('canVisitors').checked
+                       canVisitorsVote: document.getElementById('canVisitors').checked,
+                       canVoterSeeResult: document.getElementById('canVoterSeeResult').checked
                    };
 
                    if(document.getElementById('ends_at').value !== ''){

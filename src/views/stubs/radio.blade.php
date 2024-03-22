@@ -3,7 +3,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-arrow-right"></span> {{ $question }}
+                {{ $question }}
             </h3>
         </div>
     </div>

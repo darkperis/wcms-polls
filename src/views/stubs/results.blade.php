@@ -9,7 +9,7 @@
     </div>
 @endif
 
-<p class="mb-0">Αποτελέσματα Δημοσκόπησης: </p>
+<p class="mb-0">Αποτελέσματα δημοσκόπησης: </p>
 <h4>{{ $question }}</h4>
 
 @foreach($options as $option)

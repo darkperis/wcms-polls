@@ -28,7 +28,8 @@ class PollHandler
 
         $poll = new Poll([
             'question' => $request['question'],
-            'canVisitorsVote' => $request['canVisitorsVote']
+            'canVisitorsVote' => $request['canVisitorsVote'],
+            'canVoterSeeResult' => $request['canVoterSeeResult']
         ]);
 
         $poll->addOptions($request['options']);

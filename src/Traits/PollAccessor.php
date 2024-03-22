@@ -111,6 +111,10 @@ trait PollAccessor
      */
     public function hasEnded()
     {
-        return $this->ends_at < now();
+        if($this->ends_at != '')
+            return $this->ends_at < now();
+
+        // polling is forever?
+        return false;
     }
 }
