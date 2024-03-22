@@ -1,6 +1,5 @@
 <form method="POST" action="{{ route('poll.vote', $id) }}" >
-    <esi:include src='/lscache-gen-csr' cache-control='no-cache'></esi:include>
-    <esi:remove>@csrf</esi:remove>
+    @csrf
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">
