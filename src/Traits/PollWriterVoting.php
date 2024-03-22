@@ -18,7 +18,8 @@ trait PollWriterVoting
         echo view(config('wcmspolls_config.checkbox') ? config('wcmspolls_config.checkbox') :  'wcmspolls::stubs.checkbox', [
             'id' => $poll->id,
             'question' => $poll->question,
-            'options' => $options
+            'options' => $options,
+            'ajax' => config('wcmspolls_config.ajax_form')
         ]);
     }
 
@@ -34,7 +35,8 @@ trait PollWriterVoting
         echo view(config('wcmspolls_config.radio') ? config('wcmspolls_config.radio') :'wcmspolls::stubs.radio', [
             'id' => $poll->id,
             'question' => $poll->question,
-            'options' => $options
+            'options' => $options,
+            'ajax' => config('wcmspolls_config.ajax_form')
         ]);
     }
 }

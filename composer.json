@@ -1,6 +1,6 @@
 {
     "name": "darkperis/wcms-polls",
-    "description": "A Laravel package to create polls",
+    "description": "A Laravel package to create polls on Barb CMS",
     "keywords": ["polls", "votes", "laravel", "php"],
     "license": "MIT",
     "authors": [

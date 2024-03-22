@@ -7,5 +7,6 @@ return [
     'results' => '',
     'radio' => '',
     'checkbox' => '',
+    'ajax_form' => false,
     'user_model' => App\User::class,
 ];

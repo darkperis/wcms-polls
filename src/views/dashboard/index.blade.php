@@ -1,5 +1,5 @@
 @extends('layouts.app')
-{{-- @section('style') --}}
+
     <!--Regular Datatables CSS wcmspolls:: -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     {{-- <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
@@ -9,21 +9,21 @@
 
     <style type="text/css">
         .dataTables_wrapper .dataTables_filter {
-float: right;
-text-align: right;
-}
+        float: right;
+        text-align: right;
+        }
 
-.dataTables_wrapper .dataTables_length {
-float: left;
-}
+        .dataTables_wrapper .dataTables_length {
+        float: left;
+        }
 
-.dataTables_wrapper .dataTables_paginate {
-float: right;
-text-align: right;
-padding-top: 0.25em;
-}
+        .dataTables_wrapper .dataTables_paginate {
+        float: right;
+        text-align: right;
+        padding-top: 0.25em;
+        }
     </style>
-{{-- @endsection --}}
+
 @section('content')
 
 <!-- Start Content-->
@@ -34,19 +34,9 @@ padding-top: 0.25em;
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <!-- <a href="/admin/content/create" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle mr-2"></i>  Add New</a> -->
-
-                        {{-- <a href="/admin/options/create" title="Create Option" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle mr-2"></i> Add New</a> --}}
-                        <a href="{{ route('poll.create') }}" class="btn btn-primary mb-2 mt-2">Create a new poll</a>
-
-                        
-                        <!-- <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
-
-                            <li class="breadcrumb-item active">News</li>
-                        </ol> -->
+                        <a href="{{ route('poll.create') }}" class="btn btn-primary mb-2">Create a new poll</a>
                     </div>
-                    <h4 class="page-title">Manage Polls</h4>
+                    <h4 class="page-title mt-2">Manage Polls</h4>
 
                 </div>
             </div>
@@ -72,28 +62,28 @@ padding-top: 0.25em;
                 <thead>
                     <tr>
                         <th data-priority="1">#</th>
-                        <th data-priority="2">Question</th>
-                        <th data-priority="3">Options</th>
-                        <th data-priority="4">Visitors allowed</th>
-                        <th data-priority="5">Votes</th>
-                        <th data-priority="6">State</th>
-                        <th data-priority="7">Edit</th>
-                        <th data-priority="8">Delete</th>
-                        <th data-priority="9">Lock/Unlock</th>
+                        <th class="small" data-priority="2">Question</th>
+                        <th class="small" data-priority="3">Options</th>
+                        <th class="small" data-priority="4">Guests</th>
+                        <th class="small" data-priority="5">Votes</th>
+                        <th class="small" data-priority="6">State</th>
+                        <th class="small" data-priority="7">Edit</th>
+                        <th class="small" data-priority="8">Delete</th>
+                        <th class="small" data-priority="9">Lock/Unlock</th>
                     </tr>
                 </thead>
             <tbody>
                 <tr class="text-center" v-for="(poll, index) in polls">
                     <th scope="row">@{{ poll.id }}</th>
-                    <td>@{{ poll.question }}</td>
+                    <td class="small">@{{ poll.question }}</td>
                     <td>@{{ poll.options_count }}</td>
-                    <td>@{{ poll.canVisitorsVote ? 'Yes' : 'No' }}</td>
-                    <td>@{{ poll.votes_count }}</td>
+                    <td class="small">@{{ poll.canVisitorsVote ? 'Yes' : 'No' }}</td>
+                    <td class="text-warning">@{{ poll.votes_count }}</td>
                     <td>
-                        <span v-if="poll.isLocked" class="label label-danger">Closed</span>
-                        <span v-else-if="poll.isComingSoon" class="label label-info">Soon</span>
-                        <span v-else-if="poll.isRunning" class="label label-success">Started</span>
-                        <span v-else-if="poll.hasEnded" class="label label-success">Ended</span>
+                        <span v-if="poll.isLocked" class="form-label small text-danger">Closed</span>
+                        <span v-else-if="poll.isComingSoon" class="form-label small text-info">Soon</span>
+                        <span v-else-if="poll.isRunning" class="form-label small text-success">Running</span>
+                        <span v-else-if="poll.hasEnded" class="form-label small text-success">Ended</span>
                     </td>
                     <td>
                         <a class="btn btn-primary btn-sm" :href="poll.edit_link">
@@ -107,8 +97,8 @@ padding-top: 0.25em;
                     </td>
                     <td>
                         <a class="btn btn-info btn-sm" href="#" @click.prevent="toggleLock(index)">
-                            <i v-if="poll.isLocked" class="fa fa-unlock" aria-hidden="true"></i>
-                            <i v-else class="fa fa-lock" aria-hidden="true"></i>
+                            <i v-if="poll.isLocked" class="fa fa-lock" aria-hidden="true"></i>
+                            <i v-else class="fa fa-unlock" aria-hidden="true"></i>
                         </a>
                     </td>
                 </tr>
@@ -178,7 +168,7 @@ padding-top: 0.25em;
                    if(confirm('Do You really want to lock this poll?')){
                        axios.patch(this.polls[index].lock_link)
                            .then((response) => {
-                               this.assignNewData(response)
+                               this.assignNewData(response,index)
                            });
                    }
                },
@@ -186,11 +176,11 @@ padding-top: 0.25em;
                    if(confirm('Do You really want to unlock this poll?')){
                        axios.patch(this.polls[index].unlock_link)
                            .then((response) => {
-                               this.assignNewData(response)
+                               this.assignNewData(response,index)
                            });
                    }
                },
-               assignNewData(response){
+               assignNewData(response,index){
                    this.polls[index].isLocked = response.data.poll.isLocked;
                    this.polls[index].isRunning = response.data.poll.isRunning;
                    this.polls[index].isComingSoon = response.data.poll.isComingSoon;

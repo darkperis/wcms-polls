@@ -7,6 +7,7 @@ use Darkpony\WCMSPolls\Traits\PollCreator;
 use Darkpony\WCMSPolls\Traits\PollAccessor;
 use Darkpony\WCMSPolls\Traits\PollManipulator;
 use Darkpony\WCMSPolls\Traits\PollQueries;
+use Carbon\Carbon;
 
 class Poll extends Model
 {
@@ -70,4 +71,9 @@ class Poll extends Model
     {
         return $this->votes()->count() === 0;
     }
+
+    /*public function scopeNotEnded($query)
+    {
+        return $query->whereNull('ends_at')->whereNull('isClosed')->orWhere('ends_at', '>', Carbon::now());
+    }*/
 }

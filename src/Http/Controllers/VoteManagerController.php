@@ -25,6 +25,9 @@ class VoteManagerController extends Controller
                 ->vote($request->get('options'));
 
             if($vote){
+                if(\Request::ajax()){
+                    return \PollWriter::draw(\Darkpony\WCMSPolls\Poll::find($poll->id));
+                }
                 return back()->with('success', 'Ψηφίσατε επιτυχώς'); //Vote Done
             }
         }catch (Exception $e){

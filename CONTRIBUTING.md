@@ -1,2 +1,2 @@
 You are not welcome :D
-It is an internal project
+It is a private project
