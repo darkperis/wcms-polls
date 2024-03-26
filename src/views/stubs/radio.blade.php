@@ -21,23 +21,23 @@
             </ul>
         </div>
     </div>
-    
-    <script type="text/javascript">
-        $('input[name=options]').on('change', function () {
-            console.log('vote');
-            var id = $(this).val();
-            $.ajax({
-                url: '{{ route('poll.vote', $poll_id) }}',
-                type: "post",
-                data: { options:id, _token:'{{ csrf_token() }}' },
-                success: function(data) {
-                    //postDiv.append(data);
-                    //alert(id);
-                    $('#res-repl').html(data);
-                }
+    @push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('input[name=options]').on('change', function () {
+                var id = $(this).val();
+                $.ajax({
+                    url: '{{ route('poll.vote', $poll_id) }}',
+                    type: "post",
+                    data: { options:id, _token:'{{ csrf_token() }}' },
+                    success: function(data) {
+                        $('#res-repl').html(data);
+                    }
+                });
             });
         });
     </script>
+    @endpush
 @else
 <form method="POST" action="{{ route('poll.vote', $id) }}" >
     @csrf
