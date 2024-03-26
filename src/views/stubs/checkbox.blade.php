@@ -1,5 +1,6 @@
 @if($ajax)
-    <div class="panel panel-primary">
+    @php $poll_id = $id; @endphp
+    <div class="panel" id="res-repl">
         <div class="panel-heading">
             <h3 class="panel-title">
                 {{ $question }}
@@ -20,10 +21,27 @@
             </ul>
         </div>
     </div>
+
+    <script type="module">
+        $(document).ready(function() {
+            $('input[name=options]').on('change', function () {
+                var id = $(this).val();
+                $.ajax({
+                    url: '{{ route('poll.vote', $poll_id) }}',
+                    type: "post",
+                    data: { options:id, _token:'{{ csrf_token() }}' },
+                    success: function(data) {
+                        $('#res-repl').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
 @else
 <form method="POST" action="{{ route('poll.vote', $id) }}" >
     @csrf
-    <div class="panel panel-primary">
+    <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">
                 {{ $question }}
