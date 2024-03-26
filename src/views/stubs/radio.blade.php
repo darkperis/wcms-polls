@@ -21,7 +21,7 @@
             </ul>
         </div>
     </div>
-    @push('scripts')
+    
     <script type="module">
         $(document).ready(function() {
             $('input[name=options]').on('change', function () {
@@ -37,7 +37,7 @@
             });
         });
     </script>
-    @endpush
+    
 @else
 <form method="POST" action="{{ route('poll.vote', $id) }}" >
     @csrf
