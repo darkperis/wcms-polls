@@ -24,5 +24,5 @@
         </div>
     </div>
 @endforeach
- <p class="poll-voters">{{count($votes)}}</p>
+ <p class="poll-voters">Έχουν φηφίσει: <span class="total-votes">{{$total}}</span></p>
 </div>

@@ -32,7 +32,6 @@ class PollWriter
             return 'Θα ξεκινήσει σε λίγο'; //To start soon
         }
 
-
         $voter = $poll->canGuestVote() ? new Guest(request()) : auth(config('wcmspolls_config.admin_guard'))->user();
 
         if (is_null($voter) || $voter->hasVoted($poll->id) || $poll->isLocked() || $poll->hasEnded()) {

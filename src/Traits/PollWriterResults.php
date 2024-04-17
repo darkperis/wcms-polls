@@ -22,7 +22,8 @@ trait PollWriterResults
                     'name' => $result['option']->name
                 ];
         });
+
         $question = $poll->question;
-        echo view(config('wcmspolls_config.results') ? config('wcmspolls_config.results') : 'wcmspolls::stubs.results', compact('options', 'question'));
+        echo view(config('wcmspolls_config.results') ? config('wcmspolls_config.results') : 'wcmspolls::stubs.results', compact('options', 'question', 'total'));
     }
 }
