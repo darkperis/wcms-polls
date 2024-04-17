@@ -1,6 +1,7 @@
+<p class="poll-results bottom-content-title size-5 mb-3">Δημοσκόπηση:</p>
 @if($ajax)
     @php $poll_id = $id; @endphp
-    <div class="panel" id="res-repl">
+    <div class="panel poll-panel" id="res-repl">
         <div class="panel-heading">
             <h3 class="panel-title">
                 {{ $question }}
@@ -41,13 +42,12 @@
 @else
 <form method="POST" action="{{ route('poll.vote', $id) }}" >
     @csrf
-    <div class="panel">
+    <div class="panel poll-panel">
         <div class="panel-heading">
             <h3 class="panel-title">
                 {{ $question }}
             </h3>
         </div>
-
         <div class="panel-body">
             <ul class="list-group">
                 @foreach($options as $id => $name)

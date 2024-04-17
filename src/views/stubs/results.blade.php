@@ -9,7 +9,9 @@
     </div>
 @endif
 
-<p class="mb-0">Αποτελέσματα δημοσκόπησης: </p>
+<p class="poll-results bottom-content-title size-5 mb-3">Αποτέλεσμα Δημοσκόπησης: </p>
+
+<div class="poll-results-wrap">
 <h4>{{ $question }}</h4>
 
 @foreach($options as $option)
@@ -22,3 +24,5 @@
         </div>
     </div>
 @endforeach
+ <p class="poll-voters">{{count($votes)}}</p>
+</div>
