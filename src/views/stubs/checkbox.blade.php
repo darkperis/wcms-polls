@@ -1,4 +1,4 @@
-<p class="poll-results bottom-content-title size-5 mb-3">Δημοσκόπηση:</p>
+<p class="poll-results-voting bottom-content-title size-5 mb-3">Δημοσκόπηση:</p>
 @if($ajax)
     @php $poll_id = $id; @endphp
     <div class="panel poll-panel" id="res-repl">
